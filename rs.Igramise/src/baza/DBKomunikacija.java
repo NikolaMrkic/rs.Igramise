@@ -21,12 +21,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import domen.PonudaPaketaTabela;
-import domen.Admin;
+
 import domen.Igraonica;
 import domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
 import domen.KlasaZaINNERIgraonicaPaketDatumCena;
 import domen.KlasaZaINNERSlike;
 import domen.Korisnik;
+import domen.KorisnikAplikacije;
 import domen.Paket;
 
 public class DBKomunikacija {
@@ -55,6 +56,10 @@ public class DBKomunikacija {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost/igramise.rs", "root", "");
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Komunikacija sa serverom nije uspela !"
+					
+					+ "Proverite da li je Server pokrenut!"
+					);
 
 			e.printStackTrace();
 		}
@@ -629,25 +634,25 @@ public class DBKomunikacija {
 		
 	}
 /////////////////////// DELETE ADMINA ///////////////////////////
-	public ArrayList<Admin> vratiAdmina() {
+	public ArrayList<KorisnikAplikacije> vratiKorisnikaAplikacije() {
 	ResultSet rs = null;
 	Statement st = null;
-	ArrayList<Admin>admin = new ArrayList<>();
+	ArrayList<KorisnikAplikacije>korisnik = new ArrayList<>();
 	String upit = "SELECT korisnickoIme,lozinka FROM login";
 	try {
 		st = con.createStatement();
 		rs = st.executeQuery(upit);
 		
 		while(rs.next()) {
-			Admin a = new Admin();
+			KorisnikAplikacije a = new KorisnikAplikacije();
 			a.setKorisnickoIme(rs.getString("korisnickoIme"));
 			a.setLozinka(rs.getString("lozinka"));
-			admin.add(a);
+			korisnik.add(a);
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-		return admin;
+		return korisnik;
 	}
 
 }

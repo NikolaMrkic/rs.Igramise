@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import domen.Admin;
 import domen.Korisnik;
+import domen.KorisnikAplikacije;
 import forme.mojaIgraonica;
 import kontroler.Kontroler;
 
@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LogInMain extends JFrame {
+public class LogInKorisnikAplikacije extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfKorisnickoIme;
@@ -36,7 +36,7 @@ public class LogInMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LogInMain frame = new LogInMain();
+					LogInKorisnikAplikacije frame = new LogInKorisnikAplikacije();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class LogInMain extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LogInMain() {
+	public LogInKorisnikAplikacije() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 486, 390);
 		contentPane = new JPanel();
@@ -59,7 +59,7 @@ public class LogInMain extends JFrame {
 		JLabel lblGif = new JLabel("");
 		lblGif.setBounds(0, 0, 470, 186);
 		contentPane.add(lblGif);
-		 lblGif.setIcon(new javax.swing.ImageIcon(LogInMain.class.getResource("/images/logIn_ani.gif"))); 
+		 lblGif.setIcon(new javax.swing.ImageIcon(LogInKorisnikAplikacije.class.getResource("/images/logIn_ani.gif"))); 
 		 
 		 JLabel label = new JLabel("Korisnicko ime");
 		 label.setForeground(Color.BLACK);
@@ -83,15 +83,15 @@ public class LogInMain extends JFrame {
 		 tfLozninka.setBounds(198, 246, 206, 27);
 		 contentPane.add(tfLozninka);
 		  
-		  JButton button = new JButton("");
-		  button.addActionListener(new ActionListener() {
+		  JButton btnUlogujSe = new JButton("Uloguj se");
+		  btnUlogujSe.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent arg0) {
 		  		
 		  		String korisnickoIme = tfKorisnickoIme.getText();
 				String lozinka = tfLozninka.getText();
 				
 				boolean provera = false;
-				for(Admin k : Kontroler.getInstance().vratiAdmina()){
+				for(KorisnikAplikacije k : Kontroler.getInstance().vratiKorisnikaAplikacije()){
 					
 					if(k.getLozinka().equalsIgnoreCase(lozinka)&&k.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)){
 						provera = true;
@@ -115,16 +115,16 @@ public class LogInMain extends JFrame {
 		  		
 		  	}
 		  });
-		  button.setForeground(Color.RED);
-		  button.setFont(new Font("Tahoma", Font.BOLD, 11));
-		  button.setBackground(UIManager.getColor("Button.background"));
-		  button.setBounds(126, 297, 206, 43);
-		  contentPane.add(button);
-		  button.setIcon(new javax.swing.ImageIcon(LogInMain.class.getResource("/images/ajax-loader (1).gif")));
+		  btnUlogujSe.setForeground(Color.RED);
+		  btnUlogujSe.setFont(new Font("Tahoma", Font.BOLD, 11));
+		  btnUlogujSe.setBackground(UIManager.getColor("Button.background"));
+		  btnUlogujSe.setBounds(155, 308, 157, 32);
+		  contentPane.add(btnUlogujSe);
+		  btnUlogujSe.setIcon(new javax.swing.ImageIcon(LogInKorisnikAplikacije.class.getResource("/images/ajax-loader (1).gif")));
 		 
 		  JLabel lblPozadina = new JLabel("New label");
 		  lblPozadina.setBounds(0, 0, 470, 351);
 		  contentPane.add(lblPozadina);
-		  lblPozadina.setIcon(new javax.swing.ImageIcon(LogInMain.class.getResource("/images/simple_blue_background-wallpaper-2048x1152.jpg")));
+		  lblPozadina.setIcon(new javax.swing.ImageIcon(LogInKorisnikAplikacije.class.getResource("/images/simple_blue_background-wallpaper-2048x1152.jpg")));
 	}
 }

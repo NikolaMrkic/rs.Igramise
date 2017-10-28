@@ -90,7 +90,7 @@ public class logInForma extends JFrame {
 		tfLozinka.setBounds(339, 188, 231, 27);
 		contentPane.add(tfLozinka);
 
-		JButton btnUlogujSe = new JButton("");
+		JButton btnUlogujSe = new JButton("Uloguj se");
 		btnUlogujSe.setBackground(new Color(255, 255, 255));
 		btnUlogujSe.setIcon(new ImageIcon(logInForma.class.getResource("/images/button-arrow-right-icon.png")));
 		btnUlogujSe.addActionListener(new ActionListener() {
@@ -122,12 +122,12 @@ public class logInForma extends JFrame {
 			}
 
 		});
-		btnUlogujSe.setForeground(Color.RED);
-		btnUlogujSe.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnUlogujSe.setForeground(Color.DARK_GRAY);
+		btnUlogujSe.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnUlogujSe.setBounds(384, 322, 171, 43);
 		contentPane.add(btnUlogujSe);
 
-		JButton btnVratiSeNazad = new JButton("");
+		JButton btnVratiSeNazad = new JButton("Nazad");
 		btnVratiSeNazad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GlavnaForma gl = new GlavnaForma();
@@ -136,8 +136,8 @@ public class logInForma extends JFrame {
 			}
 		});
 		btnVratiSeNazad.setIcon(new ImageIcon(logInForma.class.getResource("/images/button-arrow-left-icon.png")));
-		btnVratiSeNazad.setForeground(Color.RED);
-		btnVratiSeNazad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVratiSeNazad.setForeground(Color.DARK_GRAY);
+		btnVratiSeNazad.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnVratiSeNazad.setBackground(new Color(255, 255, 255));
 		btnVratiSeNazad.setBounds(144, 322, 171, 43);
 		contentPane.add(btnVratiSeNazad);

@@ -16,12 +16,13 @@ import javax.swing.JTextField;
 
 import baza.DBKomunikacija;
 import domen.PonudaPaketaTabela;
-import domen.Admin;
+
 import domen.Igraonica;
 import domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
 import domen.KlasaZaINNERIgraonicaPaketDatumCena;
 import domen.KlasaZaINNERSlike;
 import domen.Korisnik;
+import domen.KorisnikAplikacije;
 import domen.Paket;
 
 public class Kontroler {
@@ -34,7 +35,7 @@ public class Kontroler {
 	ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> al = new ArrayList<>();
 	ArrayList<KlasaZaINNERSlike> arrayZaSlike = new ArrayList<>();
 	ArrayList<KlasaZaINNERIgraonicaPaketDatumCena> arrayZaPaketNazivCenuDatum = new ArrayList<>();
-	ArrayList<Admin>arrayAdmin = new ArrayList<>();
+	ArrayList<KorisnikAplikacije>arrayKorisnikAplikacije = new ArrayList<>();
 
 	public static Kontroler getInstance() {
 
@@ -280,11 +281,11 @@ public class Kontroler {
 		
 	}
 
-	public ArrayList<Admin> vratiAdmina() {
+	public ArrayList<KorisnikAplikacije> vratiKorisnikaAplikacije() {
 		DBKomunikacija.getInstance().otvoriKonekciju();
-		arrayAdmin= DBKomunikacija.getInstance().vratiAdmina();
+		arrayKorisnikAplikacije= DBKomunikacija.getInstance().vratiKorisnikaAplikacije();
 		DBKomunikacija.getInstance().zatvoriKonekciju();
-		return arrayAdmin;
+		return arrayKorisnikAplikacije;
 	}
 
 }
