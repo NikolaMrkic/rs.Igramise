@@ -1,0 +1,126 @@
+package GlavnaForma;
+
+import java.awt.BorderLayout;
+import forme.logInForma;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import domen.Igraonica;
+import forme.logInForma;
+import forme.mojaIgraonica;
+import forme.sveIgraoniceForma;
+import forme.unosIgraonice;
+
+import kontroler.Kontroler;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import kontroler.Kontroler;
+import domen.Igraonica;
+import java.awt.Color;
+
+public class GlavnaForma extends JFrame {
+
+	private JPanel contentPane;
+	private JComboBox cbLogIn;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GlavnaForma frame = new GlavnaForma();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public GlavnaForma() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 742, 471);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		
+		
+		JButton pogledajSvojuIgraonicu = new JButton("Promeni Igraonicu");
+		pogledajSvojuIgraonicu.setBackground(SystemColor.activeCaption);
+		pogledajSvojuIgraonicu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		pogledajSvojuIgraonicu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				logInForma l = new logInForma();
+				l.setVisible(true);
+				dispose();
+				
+			
+			
+
+			}});
+		pogledajSvojuIgraonicu.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/update.png")));
+		pogledajSvojuIgraonicu.setBounds(259, 261, 220, 60);
+		contentPane.add(pogledajSvojuIgraonicu);
+		
+		JButton PogledajSveIgraonice = new JButton("Pogledaj Igraonice");
+		PogledajSveIgraonice.setFont(new Font("Tahoma", Font.BOLD, 11));
+		PogledajSveIgraonice.setBackground(SystemColor.activeCaption);
+		PogledajSveIgraonice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sveIgraoniceForma s = new sveIgraoniceForma();
+				s.setVisible(true);
+				dispose();
+			}
+		});
+		PogledajSveIgraonice.setBounds(507, 261, 209, 60);
+		PogledajSveIgraonice.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/next.png")));
+		contentPane.add(PogledajSveIgraonice);
+		
+		JButton dodajIdraonicu = new JButton("Dodaj Igraonicu");
+		dodajIdraonicu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dodajIdraonicu.setBackground(SystemColor.activeCaption);
+		dodajIdraonicu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				unosIgraonice d = new unosIgraonice();
+				d.setVisible(true);
+				dispose();
+			}
+		});
+		dodajIdraonicu.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/Toolbar-Add-Folder-icon.png")));
+		dodajIdraonicu.setBounds(10, 261, 218, 60);
+		contentPane.add(dodajIdraonicu);
+		
+		JLabel slikaPozadina = new JLabel("");
+		slikaPozadina.setBackground(Color.ORANGE);
+		slikaPozadina.setForeground(Color.RED);
+		slikaPozadina.setFont(new Font("Tahoma", Font.BOLD, 16));
+		slikaPozadina.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/Screen Shot 2015-10-27 at 02.44.34.png")));
+		slikaPozadina.setBounds(0, -26, 736, 458);
+		contentPane.add(slikaPozadina);
+		
+		
+	}
+}
