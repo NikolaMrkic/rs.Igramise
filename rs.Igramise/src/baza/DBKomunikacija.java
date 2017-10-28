@@ -604,7 +604,7 @@ public class DBKomunikacija {
 			e.printStackTrace();
 		}
 	}
-
+/////////////////////// DELETE KORISNIKA ///////////////////////////
 	public void deleteKorisnika(int id) {
 		String sql = "DELETE FROM korisnik WHERE id_Igraonica= ?";
 		try {
@@ -616,7 +616,7 @@ public class DBKomunikacija {
 		}
 		
 	}
-
+///////////////////////// DELETE SLIKE ///////////////////////////
 	public void deleteSlike(int id) {
 	String sql = "DELETE FROM slike WHERE id_Igraonica =?";
 	try {
@@ -628,7 +628,7 @@ public class DBKomunikacija {
 	}
 		
 	}
-
+/////////////////////// DELETE ADMINA ///////////////////////////
 	public ArrayList<Admin> vratiAdmina() {
 	ResultSet rs = null;
 	Statement st = null;
