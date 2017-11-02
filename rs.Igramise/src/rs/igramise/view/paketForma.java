@@ -1,4 +1,4 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,11 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import GlavnaForma.GlavnaForma;
-import domen.Igraonica;
-import domen.Paket;
-import domen.PonudaPaketaTabela;
-import kontroler.Kontroler;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.domen.Paket;
+import rs.igramise.domen.PonudaPaketaTabela;
+import rs.igramise.kontroler.Kontroler;
 
 import java.awt.Color;
 import javax.swing.UIManager;

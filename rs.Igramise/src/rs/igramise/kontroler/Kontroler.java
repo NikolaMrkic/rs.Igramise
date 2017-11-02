@@ -1,4 +1,4 @@
-package kontroler;
+package rs.igramise.kontroler;
 
 import java.awt.List;
 import java.sql.Connection;
@@ -9,21 +9,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import forme.unosIgraonice;
+import rs.igramise.baza.DBKomunikacija;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
+import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
+import rs.igramise.domen.KlasaZaINNERSlike;
+import rs.igramise.domen.Korisnik;
+import rs.igramise.domen.KorisnikAplikacije;
+import rs.igramise.domen.Paket;
+import rs.igramise.domen.PonudaPaketaTabela;
+import rs.igramise.view.unosIgraonice;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-
-import baza.DBKomunikacija;
-import domen.PonudaPaketaTabela;
-
-import domen.Igraonica;
-import domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import domen.KlasaZaINNERIgraonicaPaketDatumCena;
-import domen.KlasaZaINNERSlike;
-import domen.Korisnik;
-import domen.KorisnikAplikacije;
-import domen.Paket;
 
 public class Kontroler {
 	Connection con;

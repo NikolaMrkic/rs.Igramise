@@ -1,19 +1,17 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.BorderLayout;
-import forme.mojaIgraonica;
-import kontroler.Kontroler;
-import domen.Igraonica;
+
+import rs.igramise.domen.Igraonica;
+import rs.igramise.domen.Korisnik;
+import rs.igramise.kontroler.Kontroler;
+import rs.igramise.view.mojaIgraonica;
+
 import java.awt.EventQueue;
-import domen.Korisnik;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import GlavnaForma.GlavnaForma;
-import domen.Igraonica;
-import kontroler.Kontroler;
-
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

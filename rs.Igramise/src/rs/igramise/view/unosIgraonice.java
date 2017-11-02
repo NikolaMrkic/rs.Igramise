@@ -1,4 +1,4 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.Image;
 import java.io.File;
@@ -18,9 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.BorderLayout;
-import baza.DBKomunikacija;
 import java.awt.EventQueue;
-import forme.DodajSliku;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -40,11 +38,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import GlavnaForma.GlavnaForma;
-import baza.DBKomunikacija;
-import domen.Igraonica;
-
-import kontroler.Kontroler;
+import rs.igramise.baza.DBKomunikacija;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.kontroler.Kontroler;
+import rs.igramise.view.DodajSliku;
 
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;

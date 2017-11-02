@@ -1,4 +1,4 @@
-package GlavnaForma;
+package rs.igramise.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,10 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import domen.Korisnik;
-import domen.KorisnikAplikacije;
-import forme.mojaIgraonica;
-import kontroler.Kontroler;
+import rs.igramise.domen.Korisnik;
+import rs.igramise.domen.KorisnikAplikacije;
+import rs.igramise.kontroler.Kontroler;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

@@ -1,4 +1,4 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -21,15 +21,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-
-import GlavnaForma.GlavnaForma;
-import baza.DBKomunikacija;
-import domen.Igraonica;
-import domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import domen.KlasaZaINNERIgraonicaPaketDatumCena;
-import domen.KlasaZaINNERSlike;
 import jdk.nashorn.internal.ir.JumpStatement;
-import kontroler.Kontroler;
 import net.sf.jasperreports.charts.JRXAxisFormat;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -37,6 +29,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.olap.xmla.JRXmlaHierarchyLevel;
 import net.sf.jasperreports.view.JasperViewer;
+import rs.igramise.baza.DBKomunikacija;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
+import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
+import rs.igramise.domen.KlasaZaINNERSlike;
+import rs.igramise.kontroler.Kontroler;
 
 import javax.swing.UIManager;
 import javax.swing.JTextField;
@@ -442,6 +440,7 @@ public class mojaIgraonica extends JFrame {
 		////////////////////////// metode koje vracaju podatke /////////////////
 		upisiPodatkeIgraonicuAdresuOpis(korisnickoIme, lozinka);
 		upisiPodatkeZaPaketDatumPaketaCenuPaketa(korisnickoIme, lozinka);
+		
 
 	}
 

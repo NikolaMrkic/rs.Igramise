@@ -1,25 +1,19 @@
-package GlavnaForma;
+package rs.igramise.view;
 
 import java.awt.BorderLayout;
-import forme.logInForma;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import baza.DBKomunikacija;
-import domen.Igraonica;
-import forme.logInForma;
-import forme.mojaIgraonica;
-import forme.sveIgraoniceForma;
-import forme.unosIgraonice;
-
-import kontroler.Kontroler;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import rs.igramise.baza.DBKomunikacija;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.kontroler.Kontroler;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,8 +30,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
-import kontroler.Kontroler;
-import domen.Igraonica;
 import java.awt.Color;
 
 public class GlavnaForma extends JFrame {

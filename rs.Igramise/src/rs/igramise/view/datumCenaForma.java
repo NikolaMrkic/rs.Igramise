@@ -1,4 +1,4 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.EventQueue;
 
@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import domen.Paket;
-import domen.PonudaPaketaTabela;
-import kontroler.Kontroler;
+import rs.igramise.domen.Paket;
+import rs.igramise.domen.PonudaPaketaTabela;
+import rs.igramise.kontroler.Kontroler;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -74,13 +74,13 @@ public class datumCenaForma extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        cbIdPaketa = new JComboBox<String>();
+        cbIdPaketa = new JComboBox();
        // cbIdPaketa.setVisible(false);
         cbIdPaketa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 String Paket = (String) cbIdPaketa.getSelectedItem();
-                for (domen.Paket p : Kontroler.getInstance().vratiPaket()) {
+                for (rs.igramise.domen.Paket p : Kontroler.getInstance().vratiPaket()) {
                     if (p.getNazivPaketa().equalsIgnoreCase(Paket)) {
                         idPaket = p.getIdPaketa();
                     }

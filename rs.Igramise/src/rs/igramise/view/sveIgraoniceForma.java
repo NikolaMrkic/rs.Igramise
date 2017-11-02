@@ -1,4 +1,4 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -10,9 +10,6 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
-
-import GlavnaForma.GlavnaForma;
-
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;

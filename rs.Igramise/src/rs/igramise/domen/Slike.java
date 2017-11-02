@@ -1,11 +1,11 @@
-package domen;
+package rs.igramise.domen;
 
 import com.mysql.jdbc.Blob;
 
 public class Slike {
 	
 	private int idSlike,idIgraonice;
-	private byte slika;
+	private String logoIgraonice;
 	/**
 	 * @return the idSlike
 	 */
@@ -31,17 +31,16 @@ public class Slike {
 		this.idIgraonice = idIgraonice;
 	}
 	/**
-	 * @return the slika
+	 * @return the logoIgraonice
 	 */
-	public byte getSlika() {
-		return slika;
+	public String getLogoIgraonice() {
+		return logoIgraonice;
 	}
 	/**
-	 * @param slika the slika to set
+	 * @param logoIgraonice the logoIgraonice to set
 	 */
-	public void setSlika(byte slika) {
-		this.slika = slika;
+	public void setLogoIgraonice(String logoIgraonice) {
+		this.logoIgraonice = logoIgraonice;
 	}
-
 	
 }

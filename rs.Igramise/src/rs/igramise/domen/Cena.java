@@ -1,4 +1,4 @@
-package domen;
+package rs.igramise.domen;
 
 public class Cena {
 

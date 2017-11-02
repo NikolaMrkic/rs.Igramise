@@ -1,9 +1,7 @@
-package baza;
+package rs.igramise.baza;
 
 import java.awt.font.ImageGraphicAttribute;
 import java.sql.Connection;
-import forme.mojaIgraonica;
-import forme.unosIgraonice;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,23 +10,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import forme.unosIgraonice;
-import kontroler.Kontroler;
-import forme.mojaIgraonica;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
+import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
+import rs.igramise.domen.KlasaZaINNERSlike;
+import rs.igramise.domen.Korisnik;
+import rs.igramise.domen.KorisnikAplikacije;
+import rs.igramise.domen.Paket;
+import rs.igramise.domen.PonudaPaketaTabela;
+import rs.igramise.kontroler.Kontroler;
+import rs.igramise.view.mojaIgraonica;
+import rs.igramise.view.unosIgraonice;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import domen.PonudaPaketaTabela;
-
-import domen.Igraonica;
-import domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import domen.KlasaZaINNERIgraonicaPaketDatumCena;
-import domen.KlasaZaINNERSlike;
-import domen.Korisnik;
-import domen.KorisnikAplikacije;
-import domen.Paket;
 
 public class DBKomunikacija {
 
@@ -133,7 +130,7 @@ public class DBKomunikacija {
 
 	public void upisiPaket(int idPaket, String nazivPaketa, String opisPaketa, int idIgraonica) {
 
-		String sql = "INSERT INTO paket (id_paket,naziv,opis_paketa,id_Igraonica) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO paket (id_paket,naziv_paketa,opis_paketa,id_Igraonica) VALUES (?,?,?,?)";
 		try {
 
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -152,7 +149,7 @@ public class DBKomunikacija {
 		ResultSet rs = null;
 		java.sql.Statement st = null;
 		ArrayList<Paket> al = new ArrayList<>();
-		String upit = "SELECT id_paket,naziv,opis_paketa FROM paket";
+		String upit = "SELECT id_paket,naziv_paketa,opis_paketa FROM paket";
 		try {
 
 			st = con.createStatement();
@@ -161,7 +158,7 @@ public class DBKomunikacija {
 			while (rs.next()) {
 				Paket p = new Paket();
 				p.setIdPaketa(rs.getInt("id_paket"));
-				p.setNazivPaketa(rs.getString("naziv"));
+				p.setNazivPaketa(rs.getString("naziv_paketa"));
 				p.setOpisPaketa(rs.getString("opis_paketa"));
 				al.add(p);
 			}
@@ -321,8 +318,7 @@ public class DBKomunikacija {
 
 			if (rs.next()) {
 				JOptionPane.showMessageDialog(null, "Dobrodosli!");
-				mojaIgraonica i = new mojaIgraonica();
-				i.setVisible(true);
+				//////////
 			} else {
 				JOptionPane.showMessageDialog(null, "Pograsan unos KORISNICKOG IMENA ILI LOZNIKE", sql,
 						JOptionPane.ERROR_MESSAGE, null);
@@ -407,7 +403,7 @@ public class DBKomunikacija {
 			String lozinka) {
 		ArrayList<KlasaZaINNERIgraonicaPaketDatumCena> al = new ArrayList<>();
 
-		String upit = "SELECT p.id_paket,i.naziv,p.naziv,d.datum_od,d.datum_do,c.cena FROM igraonica AS i INNER JOIN korisnik as k ON i.id_igraonica = k.id_Igraonica INNER JOIN paket as p ON i.id_igraonica = p.id_Igraonica INNER JOIN datum AS d ON p.id_paket = d.id_Paket INNER JOIN cenovnik AS c ON p.id_paket = c.id_Paket WHERE korisnicko_ime =? AND lozinka=?";
+		String upit = "SELECT p.id_paket,i.naziv,p.naziv_paketa,d.datum_od,d.datum_do,c.cena FROM igraonica AS i INNER JOIN korisnik as k ON i.id_igraonica = k.id_Igraonica INNER JOIN paket as p ON i.id_igraonica = p.id_Igraonica INNER JOIN datum AS d ON p.id_paket = d.id_Paket INNER JOIN cenovnik AS c ON p.id_paket = c.id_Paket WHERE korisnicko_ime =? AND lozinka=?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(upit);
@@ -417,7 +413,7 @@ public class DBKomunikacija {
 
 			while (rs.next()) {
 				KlasaZaINNERIgraonicaPaketDatumCena k = new KlasaZaINNERIgraonicaPaketDatumCena();
-				k.setNazivPaketa(rs.getString("naziv"));
+				k.setNazivPaketa(rs.getString("naziv_paketa"));
 				k.setDatumOd(rs.getString("datum_od"));
 				k.setDatumDo(rs.getString("datum_do"));
 				k.setCenaPaketa(rs.getString("cena"));

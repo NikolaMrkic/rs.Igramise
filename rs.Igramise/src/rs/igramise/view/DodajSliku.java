@@ -1,4 +1,4 @@
-package forme;
+package rs.igramise.view;
 
 import java.awt.Image;
 import java.io.File;
@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import baza.DBKomunikacija;
 
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
@@ -26,9 +25,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.mysql.jdbc.PreparedStatement;
 
-
-import domen.Igraonica;
-import kontroler.Kontroler;
+import rs.igramise.baza.DBKomunikacija;
+import rs.igramise.domen.Igraonica;
+import rs.igramise.kontroler.Kontroler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
