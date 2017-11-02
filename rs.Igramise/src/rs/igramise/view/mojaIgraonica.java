@@ -102,6 +102,7 @@ public class mojaIgraonica extends JFrame {
 	private JLabel lblPozadina;
 	private JButton btnPdf;
 	HashMap parameters;
+	private JButton button_1;
 
 	/**
 	 * Launch the application.
@@ -471,7 +472,7 @@ public class mojaIgraonica extends JFrame {
 		button.setForeground(Color.RED);
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button.setBackground(new Color(255, 255, 255));
-		button.setBounds(570, 381, 52, 50);
+		button.setBounds(550, 378, 52, 50);
 		contentPane.add(button);
 
 		JLabel lblOvaIgraonicaKoristi = new JLabel("Ova igraonica koristi paket :");
@@ -518,7 +519,7 @@ public class mojaIgraonica extends JFrame {
 		});
 		btnPdf.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/pdf-icon.png")));
 		btnPdf.setBackground(Color.WHITE);
-		btnPdf.setBounds(755, 381, 52, 50);
+		btnPdf.setBounds(735, 378, 52, 50);
 		contentPane.add(btnPdf);
 
 		JLabel lblIznos = new JLabel("Iznos Paketa :");
@@ -563,7 +564,7 @@ public class mojaIgraonica extends JFrame {
 				JOptionPane.showMessageDialog(null, "Uspesno ste promenili podatke!");
 			}
 		});
-		btnPromenaPodataka.setBounds(694, 381, 52, 50);
+		btnPromenaPodataka.setBounds(674, 378, 52, 50);
 		contentPane.add(btnPromenaPodataka);
 		btnPromenaPodataka.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/update.png")));
 		btnPromenaPodataka.setBackground(new Color(255, 255, 255));
@@ -742,7 +743,7 @@ public class mojaIgraonica extends JFrame {
 		});
 		btnDelete.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/Button-error-icon.png")));
 		btnDelete.setBackground(new Color(255, 255, 255));
-		btnDelete.setBounds(632, 381, 52, 50);
+		btnDelete.setBounds(612, 378, 52, 50);
 		contentPane.add(btnDelete);
 
 		JLabel lblRsd = new JLabel("rsd");
@@ -751,13 +752,21 @@ public class mojaIgraonica extends JFrame {
 		lblRsd.setBackground(Color.WHITE);
 		lblRsd.setBounds(271, 381, 46, 14);
 		contentPane.add(lblRsd);
-
-		lblPozadina = new JLabel("");
-		lblPozadina.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPozadina.setIcon(
-				new ImageIcon(mojaIgraonica.class.getResource("/images/Screen Shot 2015-10-27 at 02.44.34.png")));
-		lblPozadina.setBounds(0, 0, 857, 439);
-		contentPane.add(lblPozadina);
+		
+		button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/chat-2-icon (1).png")));
+		button_1.setForeground(Color.RED);
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		button_1.setBackground(Color.WHITE);
+		button_1.setBounds(795, 378, 52, 50);
+		contentPane.add(button_1);
+		
+				lblPozadina = new JLabel("");
+				lblPozadina.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblPozadina.setIcon(
+						new ImageIcon(mojaIgraonica.class.getResource("/images/Screen Shot 2015-10-27 at 02.44.34.png")));
+				lblPozadina.setBounds(0, 0, 857, 439);
+				contentPane.add(lblPozadina);
 	}
 
 	private void upisiPodatkeIgraonicuAdresuOpis(String korisnickoIme, String lozinka) {

@@ -18,6 +18,7 @@ import rs.igramise.domen.Korisnik;
 import rs.igramise.domen.KorisnikAplikacije;
 import rs.igramise.domen.Paket;
 import rs.igramise.domen.PonudaPaketaTabela;
+import rs.igramise.view.ServerForma;
 import rs.igramise.view.unosIgraonice;
 
 import javax.swing.JComboBox;
@@ -34,7 +35,8 @@ public class Kontroler {
 	ArrayList<KlasaZaINNERSlike> arrayZaSlike = new ArrayList<>();
 	ArrayList<KlasaZaINNERIgraonicaPaketDatumCena> arrayZaPaketNazivCenuDatum = new ArrayList<>();
 	ArrayList<KorisnikAplikacije>arrayKorisnikAplikacije = new ArrayList<>();
-
+	private ServerForma sf;
+	
 	public static Kontroler getInstance() {
 
 		if (instance == null) {
@@ -43,6 +45,11 @@ public class Kontroler {
 		}
 
 		return instance;
+	}
+	
+	//////SERVER PRIKAZ PODATAKA //////////
+	public void prikaziPodatke(ServerForma string) {
+		this.sf=string;
 	}
 
 	////////// IGRAONICA //////
