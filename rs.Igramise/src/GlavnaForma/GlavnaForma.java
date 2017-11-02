@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import baza.DBKomunikacija;
 import domen.Igraonica;
 import forme.logInForma;
 import forme.mojaIgraonica;
@@ -15,6 +16,10 @@ import forme.sveIgraoniceForma;
 import forme.unosIgraonice;
 
 import kontroler.Kontroler;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +31,10 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import kontroler.Kontroler;
 import domen.Igraonica;
@@ -112,6 +121,36 @@ public class GlavnaForma extends JFrame {
 		dodajIdraonicu.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/Toolbar-Add-Folder-icon.png")));
 		dodajIdraonicu.setBounds(10, 261, 218, 60);
 		contentPane.add(dodajIdraonicu);
+		
+		JButton btnIzvestajOSvimIgraonicama = new JButton("Igraonice koje koriste aplikaciju");
+		btnIzvestajOSvimIgraonicama.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					//DBKomunikacija.getInstance().otvoriKonekciju();
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost/igramise.rs", "root", "");
+					HashMap parm = new HashMap();
+					JasperPrint jp = JasperFillManager.fillReport("C:\\rs.IgramiseGitHub\\rs.Igramise\\src\\rs\\igramise\\JasperyReport\\IzvestajIgraonica.jasper",parm,con);
+					JasperViewer jw = new JasperViewer(jp);
+					jw.setVisible(true);
+					DBKomunikacija.getInstance().zatvoriKonekciju();
+				} catch (JRException ex) {
+					ex.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		btnIzvestajOSvimIgraonicama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnIzvestajOSvimIgraonicama.setBackground(SystemColor.activeCaption);
+		btnIzvestajOSvimIgraonicama.setBounds(10, 11, 250, 33);
+		btnIzvestajOSvimIgraonicama.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/Documents-icon (1).png")));
+		contentPane.add(btnIzvestajOSvimIgraonicama);
 		
 		JLabel slikaPozadina = new JLabel("");
 		slikaPozadina.setBackground(Color.ORANGE);
