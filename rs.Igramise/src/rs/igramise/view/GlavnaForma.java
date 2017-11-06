@@ -31,6 +31,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JTextArea;
 
 public class GlavnaForma extends JFrame {
 
@@ -58,7 +59,7 @@ public class GlavnaForma extends JFrame {
 	 */
 	public GlavnaForma() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 742, 471);
+		setBounds(100, 100, 874, 464);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,7 +83,7 @@ public class GlavnaForma extends JFrame {
 
 			}});
 		pogledajSvojuIgraonicu.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/update.png")));
-		pogledajSvojuIgraonicu.setBounds(259, 261, 220, 60);
+		pogledajSvojuIgraonicu.setBounds(318, 333, 220, 60);
 		contentPane.add(pogledajSvojuIgraonicu);
 		
 		JButton PogledajSveIgraonice = new JButton("Pogledaj Igraonice");
@@ -95,7 +96,7 @@ public class GlavnaForma extends JFrame {
 				dispose();
 			}
 		});
-		PogledajSveIgraonice.setBounds(507, 261, 209, 60);
+		PogledajSveIgraonice.setBounds(548, 333, 209, 60);
 		PogledajSveIgraonice.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/next.png")));
 		contentPane.add(PogledajSveIgraonice);
 		
@@ -111,7 +112,7 @@ public class GlavnaForma extends JFrame {
 			}
 		});
 		dodajIdraonicu.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/Toolbar-Add-Folder-icon.png")));
-		dodajIdraonicu.setBounds(10, 261, 218, 60);
+		dodajIdraonicu.setBounds(90, 333, 218, 60);
 		contentPane.add(dodajIdraonicu);
 		
 		JButton btnIzvestajOSvimIgraonicama = new JButton("Igraonice koje koriste aplikaciju");
@@ -122,7 +123,7 @@ public class GlavnaForma extends JFrame {
 					//DBKomunikacija.getInstance().otvoriKonekciju();
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost/igramise.rs", "root", "");
 					HashMap parm = new HashMap();
-					JasperPrint jp = JasperFillManager.fillReport("C:\\rs.IgramiseGitHub\\rs.Igramise\\src\\rs\\igramise\\JasperyReport\\IzvestajIgraonica.jasper",parm,con);
+					JasperPrint jp = JasperFillManager.fillReport("C:\\rs.IgramiseGitHub\\rs.Igramise\\src\\rs\\igramise\\JasperyReport\\TrenutnoStanjeIgraonica.jasper",parm,con);
 					JasperViewer jw = new JasperViewer(jp);
 					jw.setVisible(true);
 					DBKomunikacija.getInstance().zatvoriKonekciju();
@@ -149,7 +150,7 @@ public class GlavnaForma extends JFrame {
 		slikaPozadina.setForeground(Color.RED);
 		slikaPozadina.setFont(new Font("Tahoma", Font.BOLD, 16));
 		slikaPozadina.setIcon(new javax.swing.ImageIcon(GlavnaForma.class.getResource("/images/Screen Shot 2015-10-27 at 02.44.34.png")));
-		slikaPozadina.setBounds(0, -26, 736, 458);
+		slikaPozadina.setBounds(0, -26, 858, 451);
 		contentPane.add(slikaPozadina);
 		
 		
