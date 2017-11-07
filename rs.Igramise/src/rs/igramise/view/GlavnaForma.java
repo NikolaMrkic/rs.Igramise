@@ -67,7 +67,7 @@ public class GlavnaForma extends JFrame {
 		
 		
 		
-		JButton pogledajSvojuIgraonicu = new JButton("Promeni Igraonicu");
+		JButton pogledajSvojuIgraonicu = new JButton("Moja Igraonica");
 		pogledajSvojuIgraonicu.setBackground(SystemColor.activeCaption);
 		pogledajSvojuIgraonicu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		pogledajSvojuIgraonicu.addActionListener(new ActionListener() {

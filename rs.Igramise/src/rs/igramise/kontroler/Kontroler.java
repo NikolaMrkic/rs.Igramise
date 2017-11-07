@@ -18,7 +18,7 @@ import rs.igramise.domen.Korisnik;
 import rs.igramise.domen.KorisnikAplikacije;
 import rs.igramise.domen.Paket;
 import rs.igramise.domen.PonudaPaketaTabela;
-import rs.igramise.view.ServerForma;
+
 import rs.igramise.view.unosIgraonice;
 
 import javax.swing.JComboBox;
@@ -34,9 +34,9 @@ public class Kontroler {
 	ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> al = new ArrayList<>();
 	ArrayList<KlasaZaINNERSlike> arrayZaSlike = new ArrayList<>();
 	ArrayList<KlasaZaINNERIgraonicaPaketDatumCena> arrayZaPaketNazivCenuDatum = new ArrayList<>();
-	ArrayList<KorisnikAplikacije>arrayKorisnikAplikacije = new ArrayList<>();
-	private ServerForma sf;
-	
+	ArrayList<KorisnikAplikacije> arrayKorisnikAplikacije = new ArrayList<>();
+	ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik>arrayZlatnaRibica = new ArrayList<>();
+
 	public static Kontroler getInstance() {
 
 		if (instance == null) {
@@ -45,11 +45,6 @@ public class Kontroler {
 		}
 
 		return instance;
-	}
-	
-	//////SERVER PRIKAZ PODATAKA //////////
-	public void prikaziPodatke(ServerForma string) {
-		this.sf=string;
 	}
 
 	////////// IGRAONICA //////
@@ -92,7 +87,6 @@ public class Kontroler {
 
 	}
 
-	////////////////////////////
 	///////// KORISNIK//////////////
 
 	public void unesiKorisnika(int idKorisnik, String korisnickoIme, String lozinka, int idIgraonica) {
@@ -178,6 +172,14 @@ public class Kontroler {
 		return arrayZaPaketNazivCenuDatum;
 	}
 
+	//////////////////////// INNER JOIN SLIKE ///////////////
+	public ArrayList<KlasaZaINNERSlike> vratiSliku(String korisnickoIme, String lozinka) {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		arrayZaSlike = DBKomunikacija.getInstance().vratiSliku(korisnickoIme,lozinka);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+		return arrayZaSlike;
+	}
+
 	////////////////////// UPDATE IGRAONICA
 	////////////////////// /////////////////////////////////////////////
 	public void updateIgraonicu(String naziv, String kontaktosoba, String email, String telefon, String web, int id) {
@@ -257,6 +259,7 @@ public class Kontroler {
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 
 	}
+
 	///////////////////////// DELETE DATUM ///////////////////////////
 	public void deleteDatum(int idPaketa) {
 		DBKomunikacija.getInstance().otvoriKonekciju();
@@ -271,26 +274,36 @@ public class Kontroler {
 		DBKomunikacija.getInstance().deleteCenovnik(idPaketa);
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 	}
-///////////////////////// DELETE KORISNIKA ///////////////////////////
+	///////////////////////// DELETE KORISNIKA ///////////////////////////
 
 	public void deleteKorisnika(int id) {
-			DBKomunikacija.getInstance().otvoriKonekciju();
-			DBKomunikacija.getInstance().deleteKorisnika(id);
-			DBKomunikacija.getInstance().zatvoriKonekciju();
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		DBKomunikacija.getInstance().deleteKorisnika(id);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
 	}
 
 	public void deleteSlike(int id) {
-	DBKomunikacija.getInstance().otvoriKonekciju();
-	DBKomunikacija.getInstance().deleteSlike(id);
-	DBKomunikacija.getInstance().zatvoriKonekciju();
-		
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		DBKomunikacija.getInstance().deleteSlike(id);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+
 	}
 
+	////////// KORISNICI APLIKACIJE //////////////
 	public ArrayList<KorisnikAplikacije> vratiKorisnikaAplikacije() {
 		DBKomunikacija.getInstance().otvoriKonekciju();
-		arrayKorisnikAplikacije= DBKomunikacija.getInstance().vratiKorisnikaAplikacije();
+		arrayKorisnikAplikacije = DBKomunikacija.getInstance().vratiKorisnikaAplikacije();
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 		return arrayKorisnikAplikacije;
 	}
+
+	public ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> vratiIgraonicuZlatnuRibicu() {
+
+			DBKomunikacija.getInstance().otvoriKonekciju();
+			arrayZlatnaRibica = DBKomunikacija.getInstance().vratiIgraonicuZlatnuRibicu();
+			DBKomunikacija.getInstance().zatvoriKonekciju();
+			return arrayZlatnaRibica;
+	}
+
 
 }

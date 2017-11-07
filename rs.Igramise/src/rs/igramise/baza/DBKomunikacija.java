@@ -54,9 +54,8 @@ public class DBKomunikacija {
 			con = DriverManager.getConnection("jdbc:mysql://localhost/igramise.rs", "root", "");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Komunikacija sa serverom nije uspela !"
-					
-					+ "Proverite da li je Server pokrenut!"
-					);
+
+					+ "Proverite da li je Server pokrenut!");
 
 			e.printStackTrace();
 		}
@@ -396,6 +395,29 @@ public class DBKomunikacija {
 		}
 		return al;
 	}
+
+	//////////////// INNER JOIN ZA SLIKE /////////////////////////
+
+	public ArrayList<KlasaZaINNERSlike> vratiSliku(String korisnickoIme, String lozinka) {
+		ArrayList<KlasaZaINNERSlike> s = new ArrayList<>();
+		String upit = "SELECT s.slika FROM igraonica AS i INNER JOIN korisnik AS k ON i.id_igraonica = k.id_Igraonica INNER JOIN slike AS s ON i.id_igraonica = s.id_Igraonica  WHERE korisnicko_ime =? AND lozinka=?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(upit);
+			ps.setString(1, korisnickoIme);
+			ps.setString(2, lozinka);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				KlasaZaINNERSlike ss = new KlasaZaINNERSlike();
+				ss.setSlika(rs.getByte("slika"));
+				s.add(ss);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////// INER JOI Igraonica Paket Datum Cena
 
@@ -480,7 +502,7 @@ public class DBKomunikacija {
 	////////////////// UPDATE PAKET ///////////////////
 	public void updatePaket(String nazivPaketa, int id) {
 
-		String sqlPaket = "UPDATE paket SET naziv = '" + nazivPaketa + "' WHERE id_paket = '" + id + "'";
+		String sqlPaket = "UPDATE paket SET naziv_paketa = '" + nazivPaketa + "' WHERE id_paket = '" + id + "'";
 
 		try {
 
@@ -529,7 +551,7 @@ public class DBKomunikacija {
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			System.out.println("U brisanju sam");
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -543,7 +565,7 @@ public class DBKomunikacija {
 		System.out.println("kod upita");
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			
+
 			ps.setInt(1, id);
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -582,9 +604,9 @@ public class DBKomunikacija {
 	///////////////////////// DELETE DATUM ///////////////////////////
 
 	public void deleteDatum(int idPaketa) {
-		
+
 		String sql = "DELETE FROM datum WHERE id_Paket = ?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, idPaketa);
@@ -592,9 +614,10 @@ public class DBKomunikacija {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-///////////////////////// DELETE CENOVNIK ///////////////////////////
+
+	///////////////////////// DELETE CENOVNIK ///////////////////////////
 	public void deleteCenovnik(int idPaketa) {
 		String sql = "DELETE FROM cenovnik WHERE id_Paket = ?";
 		try {
@@ -605,50 +628,90 @@ public class DBKomunikacija {
 			e.printStackTrace();
 		}
 	}
-/////////////////////// DELETE KORISNIKA ///////////////////////////
+
+	/////////////////////// DELETE KORISNIKA ///////////////////////////
 	public void deleteKorisnika(int id) {
 		String sql = "DELETE FROM korisnik WHERE id_Igraonica= ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.executeUpdate();
-		} catch (Exception e	) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	}
-///////////////////////// DELETE SLIKE ///////////////////////////
-	public void deleteSlike(int id) {
-	String sql = "DELETE FROM slike WHERE id_Igraonica =?";
-	try {
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, id);
-		ps.executeQuery();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-		
-	}
-/////////////////////// DELETE ADMINA ///////////////////////////
-	public ArrayList<KorisnikAplikacije> vratiKorisnikaAplikacije() {
-	ResultSet rs = null;
-	Statement st = null;
-	ArrayList<KorisnikAplikacije>korisnik = new ArrayList<>();
-	String upit = "SELECT korisnickoIme,lozinka FROM login";
-	try {
-		st = con.createStatement();
-		rs = st.executeQuery(upit);
-		
-		while(rs.next()) {
-			KorisnikAplikacije a = new KorisnikAplikacije();
-			a.setKorisnickoIme(rs.getString("korisnickoIme"));
-			a.setLozinka(rs.getString("lozinka"));
-			korisnik.add(a);
-		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-		return korisnik;
+
 	}
 
-}
+	///////////////////////// DELETE SLIKE ///////////////////////////
+	public void deleteSlike(int id) {
+		String sql = "DELETE FROM slike WHERE id_Igraonica =?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/////////////////////// DELETE ADMINA ///////////////////////////
+	public ArrayList<KorisnikAplikacije> vratiKorisnikaAplikacije() {
+		ResultSet rs = null;
+		Statement st = null;
+		ArrayList<KorisnikAplikacije> korisnik = new ArrayList<>();
+		String upit = "SELECT korisnickoIme,lozinka FROM login";
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(upit);
+
+			while (rs.next()) {
+				KorisnikAplikacije a = new KorisnikAplikacije();
+				a.setKorisnickoIme(rs.getString("korisnickoIme"));
+				a.setLozinka(rs.getString("lozinka"));
+				korisnik.add(a);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return korisnik;
+	}
+	
+	//////////////////////////// Vrati Zlatnu Ribicu //////////////////
+	public ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> vratiIgraonicuZlatnuRibicu() {
+		ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> all = new ArrayList<>();
+	
+		String upit = " SELECT i.id_Igraonica,naziv,kontakt_Osoba,email,opstina,grad,telefon,web,adresa,opis_igraonice FROM igraonica AS i INNER JOIN opis AS o ON i.id_igraonica = o.id_Opis INNER JOIN adresa AS a ON i.id_igraonica = a.id_Igraonica INNER JOIN korisnik k ON i.id_igraonica = k.id_Igraonica WHERE i.id_igraonica = 1";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(upit);
+		
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				KlasaZaINNERIgraonicaAdresaOpisKorisnik kk = new KlasaZaINNERIgraonicaAdresaOpisKorisnik();
+				kk.setNaziv(rs.getString("naziv"));
+				kk.setKontaktOsoba(rs.getString("kontakt_Osoba"));
+				kk.setEmail(rs.getString("email"));
+				kk.setOstina(rs.getString("opstina"));
+				kk.setGrad(rs.getString("grad"));
+				kk.setTelefon(rs.getString("telefon"));
+				kk.setWeb(rs.getString("web"));
+				kk.setAdresa(rs.getString("adresa"));
+				kk.setOpisIgraonice(rs.getString("opis_igraonice"));
+				kk.setIdIgraonica(rs.getString("id_Igraonica"));
+
+				all.add(kk);
+			}	
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		return all;
+
+		}
+				
+	}
+
+
