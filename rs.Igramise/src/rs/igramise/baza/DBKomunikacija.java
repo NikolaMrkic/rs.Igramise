@@ -14,10 +14,12 @@ import rs.igramise.domen.Igraonica;
 import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
 import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
 import rs.igramise.domen.KlasaZaINNERSlike;
+import rs.igramise.domen.KlasaZaSveIgraonice;
 import rs.igramise.domen.Korisnik;
 import rs.igramise.domen.KorisnikAplikacije;
 import rs.igramise.domen.Paket;
 import rs.igramise.domen.PonudaPaketaTabela;
+import rs.igramise.domen.Rodjendan;
 import rs.igramise.kontroler.Kontroler;
 import rs.igramise.view.mojaIgraonica;
 import rs.igramise.view.unosIgraonice;
@@ -95,7 +97,7 @@ public class DBKomunikacija {
 			e.printStackTrace();
 		}
 	}
-
+		///////// VRATI IGRAONICU ///////////////
 	public ArrayList<Igraonica> vratiIgraonicu() {
 		ResultSet rs = null;
 		java.sql.Statement st = null;
@@ -214,6 +216,25 @@ public class DBKomunikacija {
 		return al;
 	}
 
+	public void zakaziRodjendan(int idRodjendan, String imeRodjitelja, String imeSlavljenika, int brD, int brO,
+			int idIgraonica) {
+
+		String upit = "INSERT INTO rodjendan(id_rodjendan,ime_roditelja,ime_slavljenika,br_dece,br_odraslih,id_Igraonica) VALUES (?,?,?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(upit);
+			ps.setInt(1, idRodjendan);
+			ps.setString(2, imeRodjitelja);
+			ps.setString(3, imeSlavljenika);
+			ps.setInt(4, brD);
+			ps.setInt(5, brO);
+			ps.setInt(6, idIgraonica);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	//////////////////////// ADRESA
 	//////////////////////// //////////////////////////////////////////////////
 
@@ -266,6 +287,36 @@ public class DBKomunikacija {
 			e.printStackTrace();
 		}
 
+	}
+
+	///////////////// ZAKAZI DATUM RODJENDANA //////////////
+	public void zakaziDatumRodjendana(int idDatumRodjendana,String danOd ,int idRodjendan) {
+		String upit = "INSERT INTO datum_rodjendana (id_datum_rodjendana ,datum,id_Rodjendan) VALUES (?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(upit);
+			ps.setInt(1, idDatumRodjendana);
+			ps.setString(2,  danOd);
+			ps.setInt(3, idRodjendan);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+		/////////// ZAKAZI VREME RODJENDANA //////////////////////
+public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String vremeDo, int idRodjendan) {
+	System.out.println("Treba da ispisem vreme");
+		String sql = "INSERT INTO vreme_rodjendana (id_vreme_rodjendana, vreme_od, vreme_do, id_Rodjendan VALUES (?+'"+vrameOd+"'+'"+vremeDo+"'+?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idVremeRodjendana);
+			ps.setString(2, vrameOd);
+			ps.setString(3, vremeDo);
+			ps.setInt(4, idRodjendan);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/////////////////////// DATUM ///////////////////////
@@ -357,6 +408,32 @@ public class DBKomunikacija {
 
 		return pp;
 	}
+
+	//////////////////// VRATI RODJENDAN ///////////////////////////////
+	public ArrayList<Rodjendan> vratiRodjendan(String idIgraonica) {
+		ArrayList<Rodjendan> al = new ArrayList<>();
+		String upit = "SELECT ime_roditelja,ime_slavljenika,br_dece,br_odraslih,id_Igraonica FROM rodjendan";
+		try {
+			PreparedStatement ps = con.prepareStatement(upit);
+			ps.setString(6, idIgraonica);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Rodjendan r = new Rodjendan();
+				//r.setIdRodjendan(rs.getInt("id_rodjendana"));
+				r.setImeRoditelja(rs.getString("ime_roditelja"));
+				r.setBrDece(rs.getInt("ime_slavljenika"));
+				r.setImeSlavljenika(rs.getString("br_dece"));
+				r.setBrojOdraslih(rs.getInt("br_odraslih"));
+				r.setIdIgraonica(rs.getString("id_Igraonica"));
+
+				al.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return al;
+	}
 	////////////////////////////// INNER JOIN = Igraonica,Adresa,Opis,Korisnik
 	////////////////////////////// ////////////////////////
 
@@ -401,14 +478,14 @@ public class DBKomunikacija {
 	public ArrayList<KlasaZaINNERSlike> vratiSliku(String korisnickoIme, String lozinka) {
 		ArrayList<KlasaZaINNERSlike> s = new ArrayList<>();
 		String upit = "SELECT s.slika FROM igraonica AS i INNER JOIN korisnik AS k ON i.id_igraonica = k.id_Igraonica INNER JOIN slike AS s ON i.id_igraonica = s.id_Igraonica  WHERE korisnicko_ime =? AND lozinka=?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(upit);
 			ps.setString(1, korisnickoIme);
 			ps.setString(2, lozinka);
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				KlasaZaINNERSlike ss = new KlasaZaINNERSlike();
 				ss.setSlika(rs.getByte("slika"));
 				s.add(ss);
@@ -676,42 +753,66 @@ public class DBKomunikacija {
 		}
 		return korisnik;
 	}
-	
-	//////////////////////////// Vrati Zlatnu Ribicu //////////////////
-	public ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> vratiIgraonicuZlatnuRibicu() {
-		ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> all = new ArrayList<>();
-	
-		String upit = " SELECT i.id_Igraonica,naziv,kontakt_Osoba,email,opstina,grad,telefon,web,adresa,opis_igraonice FROM igraonica AS i INNER JOIN opis AS o ON i.id_igraonica = o.id_Opis INNER JOIN adresa AS a ON i.id_igraonica = a.id_Igraonica INNER JOIN korisnik k ON i.id_igraonica = k.id_Igraonica WHERE i.id_igraonica = 1";
 
+	public ArrayList<KlasaZaSveIgraonice> vratiPodatkeZaIgraonicuAdresuIidRodjendana() {
+		ArrayList<KlasaZaSveIgraonice> all = new ArrayList<>();
+		String upit = "SELECT i.id_igraonica,i.naziv,i.email,i.telefon,i.web,a.adresa,a.grad\r\n" + 
+				"FROM igraonica AS i \r\n" + 
+				"INNER JOIN adresa AS a \r\n" + 
+				"ON\r\n" + 
+				"i.id_igraonica = a.id_Igraonica;\r\n" + 
+				"";
 		try {
+
 			PreparedStatement ps = con.prepareStatement(upit);
-		
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-
-				KlasaZaINNERIgraonicaAdresaOpisKorisnik kk = new KlasaZaINNERIgraonicaAdresaOpisKorisnik();
-				kk.setNaziv(rs.getString("naziv"));
-				kk.setKontaktOsoba(rs.getString("kontakt_Osoba"));
-				kk.setEmail(rs.getString("email"));
-				kk.setOstina(rs.getString("opstina"));
-				kk.setGrad(rs.getString("grad"));
-				kk.setTelefon(rs.getString("telefon"));
-				kk.setWeb(rs.getString("web"));
-				kk.setAdresa(rs.getString("adresa"));
-				kk.setOpisIgraonice(rs.getString("opis_igraonice"));
-				kk.setIdIgraonica(rs.getString("id_Igraonica"));
-
-				all.add(kk);
-			}	
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
+				KlasaZaSveIgraonice s = new KlasaZaSveIgraonice();
+				s.setNazivIgraonice(rs.getString("naziv"));
+				s.setEmail(rs.getString("email"));
+				s.setTelefon(rs.getString("telefon"));
+				s.setWeb(rs.getString("web"));
+				s.setAdresa(rs.getString("adresa"));
+				//s.setOpstina(rs.getString("opstina"));
+				s.setGrad(rs.getString("grad"));
+				s.setIdIgraonice(rs.getString("id_igraonica"));
+				//s.setIdRodjendana(rs.getString("id_rodjendan"));
+				all.add(s);
+				System.out.println(s.getNazivIgraonice()+"DB KO");
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return all;
 
+	}
+	 	//////////////// VRATI RODJENDAN ////////////////////
+	public ArrayList<Rodjendan> vratiRodjendan() {
+		ArrayList<Rodjendan> al = new ArrayList<>();
+		String upit = "SELECT id_rodjendan,ime_roditelja,ime_slavljenika,br_dece,br_odraslih,id_Igraonica FROM rodjendan";
+		try {
+
+			st = con.createStatement();
+			rs = st.executeQuery(upit);
+
+			while (rs.next()) {
+				Rodjendan r = new Rodjendan();
+				r.setIdRodjendan(rs.getInt("id_rodjendan"));
+				r.setImeRoditelja(rs.getString("ime_roditelja"));
+				r.setBrDece(rs.getInt("br_dece"));
+				r.setImeSlavljenika(rs.getString("ime_slavljenika"));
+				r.setBrojOdraslih(rs.getInt("br_odraslih"));
+				r.setIdIgraonica(rs.getString("id_Igraonica"));
+
+				al.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-				
+		return al;
 	}
 
+	
 
+}

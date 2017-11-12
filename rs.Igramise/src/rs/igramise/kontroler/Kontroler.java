@@ -14,15 +14,18 @@ import rs.igramise.domen.Igraonica;
 import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
 import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
 import rs.igramise.domen.KlasaZaINNERSlike;
+import rs.igramise.domen.KlasaZaSveIgraonice;
 import rs.igramise.domen.Korisnik;
 import rs.igramise.domen.KorisnikAplikacije;
 import rs.igramise.domen.Paket;
 import rs.igramise.domen.PonudaPaketaTabela;
-
+import rs.igramise.domen.Rodjendan;
 import rs.igramise.view.unosIgraonice;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+
+import com.mysql.fabric.xmlrpc.base.Array;
 
 public class Kontroler {
 	Connection con;
@@ -35,7 +38,9 @@ public class Kontroler {
 	ArrayList<KlasaZaINNERSlike> arrayZaSlike = new ArrayList<>();
 	ArrayList<KlasaZaINNERIgraonicaPaketDatumCena> arrayZaPaketNazivCenuDatum = new ArrayList<>();
 	ArrayList<KorisnikAplikacije> arrayKorisnikAplikacije = new ArrayList<>();
-	ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik>arrayZlatnaRibica = new ArrayList<>();
+	ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> arrayZlatnaRibica = new ArrayList<>();
+	ArrayList<Rodjendan> arrayRodjendan = new ArrayList<>();
+	ArrayList<KlasaZaSveIgraonice> arrayZaSveIgraonice = new ArrayList<>();
 
 	public static Kontroler getInstance() {
 
@@ -60,6 +65,16 @@ public class Kontroler {
 		i = DBKomunikacija.getInstance().vratiIgraonicu();
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 		return i;
+	}
+
+	///////////////////// ZAKAZI RODJENDAN //////////////
+	public void zakaziRodjendan(int idRodjendan, String imeRodjitelja, String imeSlavljenika, int brD, int brO,
+			 int IdIgraonica) {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		DBKomunikacija.getInstance().zakaziRodjendan(idRodjendan, imeRodjitelja, imeSlavljenika, brD, brO, 
+				IdIgraonica);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+
 	}
 
 	// Korisnik
@@ -175,7 +190,7 @@ public class Kontroler {
 	//////////////////////// INNER JOIN SLIKE ///////////////
 	public ArrayList<KlasaZaINNERSlike> vratiSliku(String korisnickoIme, String lozinka) {
 		DBKomunikacija.getInstance().otvoriKonekciju();
-		arrayZaSlike = DBKomunikacija.getInstance().vratiSliku(korisnickoIme,lozinka);
+		arrayZaSlike = DBKomunikacija.getInstance().vratiSliku(korisnickoIme, lozinka);
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 		return arrayZaSlike;
 	}
@@ -297,13 +312,38 @@ public class Kontroler {
 		return arrayKorisnikAplikacije;
 	}
 
-	public ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> vratiIgraonicuZlatnuRibicu() {
-
-			DBKomunikacija.getInstance().otvoriKonekciju();
-			arrayZlatnaRibica = DBKomunikacija.getInstance().vratiIgraonicuZlatnuRibicu();
-			DBKomunikacija.getInstance().zatvoriKonekciju();
-			return arrayZlatnaRibica;
+	public ArrayList<Rodjendan> vratRodjendan(String idIgraonica) {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		arrayRodjendan = DBKomunikacija.getInstance().vratiRodjendan(idIgraonica);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+		return arrayRodjendan;
 	}
 
+	public ArrayList<KlasaZaSveIgraonice> vratiPodatkeZaIgraonicuAdresuIidRodjendana() {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		arrayZaSveIgraonice = DBKomunikacija.getInstance().vratiPodatkeZaIgraonicuAdresuIidRodjendana();
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+		return arrayZaSveIgraonice;
+	}
+
+	public void zakaziDatumRodjendana(int idDatumRodjendana,String danOd ,int idRodjendana) {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		DBKomunikacija.getInstance().zakaziDatumRodjendana(idDatumRodjendana,danOd ,idRodjendana);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+
+	}
+
+	public ArrayList<Rodjendan> vratRodjendan() {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		arrayRodjendan=DBKomunikacija.getInstance().vratiRodjendan();
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+		return arrayRodjendan;
+	}
+
+	public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String vremeDo, int idRodjendan) {
+		DBKomunikacija.getInstance().otvoriKonekciju();
+		DBKomunikacija.getInstance().zakaziVremeRodjendana(idVremeRodjendana,vrameOd,vremeDo,idRodjendan);
+		DBKomunikacija.getInstance().zatvoriKonekciju();
+	}
 
 }
