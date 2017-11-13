@@ -133,12 +133,8 @@ public class sveIgraoniceForma extends JFrame {
 				postavi();
 			}
 		});
-		btnIgraonica3.setBounds(166, 289, 212, 43);
+		btnIgraonica3.setBounds(300, 313, 212, 43);
 		getContentPane().add(btnIgraonica3);
-
-		JButton btnIgraonica4 = new JButton("New button");
-		btnIgraonica4.setBounds(426, 289, 212, 43);
-		getContentPane().add(btnIgraonica4);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(192, 192, 192));

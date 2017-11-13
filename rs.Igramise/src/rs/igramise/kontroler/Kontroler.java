@@ -68,10 +68,10 @@ public class Kontroler {
 	}
 
 	///////////////////// ZAKAZI RODJENDAN //////////////
-	public void zakaziRodjendan(int idRodjendan, String imeRodjitelja, String imeSlavljenika, int brD, int brO,
+	public void zakaziRodjendan( String imeRodjitelja, String imeSlavljenika, int brD, int brO,
 			 int IdIgraonica) {
 		DBKomunikacija.getInstance().otvoriKonekciju();
-		DBKomunikacija.getInstance().zakaziRodjendan(idRodjendan, imeRodjitelja, imeSlavljenika, brD, brO, 
+		DBKomunikacija.getInstance().zakaziRodjendan( imeRodjitelja, imeSlavljenika, brD, brO, 
 				IdIgraonica);
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 
@@ -325,24 +325,24 @@ public class Kontroler {
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 		return arrayZaSveIgraonice;
 	}
-
-	public void zakaziDatumRodjendana(int idDatumRodjendana,String danOd ,int idRodjendana) {
+	//////////// ZAKAZI DATUM RODJENDANA //////////////
+	public void zakaziDatumRodjendana(String datumOd ,int idRodjendana) {
 		DBKomunikacija.getInstance().otvoriKonekciju();
-		DBKomunikacija.getInstance().zakaziDatumRodjendana(idDatumRodjendana,danOd ,idRodjendana);
+		DBKomunikacija.getInstance().zakaziDatumRodjendana(datumOd ,idRodjendana);
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 
 	}
-
+	//////////// VRATI RODJENDAN /////////////
 	public ArrayList<Rodjendan> vratRodjendan() {
 		DBKomunikacija.getInstance().otvoriKonekciju();
 		arrayRodjendan=DBKomunikacija.getInstance().vratiRodjendan();
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 		return arrayRodjendan;
 	}
-
-	public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String vremeDo, int idRodjendan) {
+	///////////// ZAKAZI VREME RODJENDANA //////////////
+	public void zakaziVremeRodjendana( String vrameOd, String vremeDo, int idRodjendan) {
 		DBKomunikacija.getInstance().otvoriKonekciju();
-		DBKomunikacija.getInstance().zakaziVremeRodjendana(idVremeRodjendana,vrameOd,vremeDo,idRodjendan);
+		DBKomunikacija.getInstance().zakaziVremeRodjendana(vrameOd,vremeDo,idRodjendan);
 		DBKomunikacija.getInstance().zatvoriKonekciju();
 	}
 
