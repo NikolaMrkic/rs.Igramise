@@ -1,3 +1,4 @@
+
 package rs.igramise.view;
 
 import java.awt.BorderLayout;
@@ -168,6 +169,8 @@ public class mojaIgraonica extends JFrame {
 		lblVaziDo.setBackground(Color.RED);
 		lblVaziDo.setBounds(330, 332, 40, 14);
 		contentPane.add(lblVaziDo);
+		
+		
 
 		tfodTrajanjePakreka = new JTextField();
 		tfodTrajanjePakreka.setBounds(359, 329, 77, 20);
@@ -179,53 +182,7 @@ public class mojaIgraonica extends JFrame {
 		contentPane.add(tfKojiPaketKoristi);
 		tfKojiPaketKoristi.setColumns(10);
 
-		btnPdf = new JButton("");
-		btnPdf.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				String idIgraonica = tfIdIgraonice.getText().toString();
-				System.out.println("NOVI IDIIII " + idIgraonica);
-				// String idPaket = tfIdPaketa.getText().toString();
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
-
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost/igramise.rs", "root", "");
-
-					JasperDesign jd = JRXmlLoader.load(
-							"C:\\rs.IgramiseGitHub\\rs.Igramise\\src\\rs\\igramise\\jasperyReport\\IzvestajOdIgraonice.jrxml");
-
-					String sql = "SELECT  i.id_igraonica,naziv,kontakt_osoba,email,telefon,web,naziv_paketa,datum_od,datum_do,cena FROM igraonica AS i INNER JOIN adresa AS a ON i.id_igraonica = a.id_Igraonica INNER JOIN opis AS o ON i.id_igraonica = o.id_Igraonica INNER JOIN paket AS p ON i.id_igraonica = p.id_Igraonica INNER JOIN datum AS d ON p.id_paket = d.id_Paket INNER JOIN cenovnik AS c ON p.id_paket = c.id_Paket WHERE i.id_igraonica = $P{idIgraonica}";
-
-					JRDesignQuery up = new JRDesignQuery();
-					up.setText(sql);
-
-					System.out.print(up);
-					jd.setQuery(up);
-					System.out.print(jd);
-
-					JasperReport jr = JasperCompileManager.compileReport(jd);
-
-					JasperPrint js = JasperFillManager.fillReport(jr, null, con);
-					JasperViewer.viewReport(js, false);
-
-				} catch (JRException e1) {
-
-					e1.printStackTrace();
-
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnPdf.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/pdf-icon.png")));
-		btnPdf.setBackground(Color.WHITE);
-		btnPdf.setBounds(731, 378, 52, 50);
-		contentPane.add(btnPdf);
-
+		
 		JLabel lblIznos = new JLabel("Iznos Paketa :");
 		lblIznos.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblIznos.setForeground(Color.RED);
@@ -462,19 +419,7 @@ public class mojaIgraonica extends JFrame {
 		lblRsd.setBounds(750, 332, 46, 14);
 		contentPane.add(lblRsd);
 
-		btnChat = new JButton("");
-		btnChat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
-		btnChat.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/chat-2-icon (1).png")));
-		btnChat.setForeground(Color.RED);
-		btnChat.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnChat.setBackground(Color.WHITE);
-		btnChat.setBounds(795, 378, 52, 50);
-		contentPane.add(btnChat);
-
+	
 		lblPozadina = new JLabel("");
 		lblPozadina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPozadina.setIcon(
@@ -485,8 +430,10 @@ public class mojaIgraonica extends JFrame {
 		upisiPodatkeIgraonicuAdresuOpis(korisnickoIme, lozinka);
 		upisiPodatkeZaPaketDatumPaketaCenuPaketa(korisnickoIme, lozinka);
 		
+		
 
 	}
+	
 
 	//////////////// Konstruktor koji pomogucava prikaz komponenti
 	//////////////// ///////////////////////
@@ -541,52 +488,6 @@ public class mojaIgraonica extends JFrame {
 		contentPane.add(tfKojiPaketKoristi);
 		tfKojiPaketKoristi.setColumns(10);
 
-		btnPdf = new JButton("");
-		btnPdf.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				String idIgraonica = tfIdIgraonice.getText().toString();
-				System.out.println("NOVI IDIIII " + idIgraonica);
-				// String idPaket = tfIdPaketa.getText().toString();
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
-
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost/igramise.rs", "root", "");
-
-					JasperDesign jd = JRXmlLoader.load(
-							"C:\\rs.IgramiseGitHub\\rs.Igramise\\src\\rs\\igramise\\jasperyReport\\IzvestajOdIgraonice.jrxml");
-
-					String sql = "SELECT  i.id_igraonica,naziv,kontakt_osoba,email,telefon,web,naziv_paketa,datum_od,datum_do,cena FROM igraonica AS i INNER JOIN adresa AS a ON i.id_igraonica = a.id_Igraonica INNER JOIN opis AS o ON i.id_igraonica = o.id_Igraonica INNER JOIN paket AS p ON i.id_igraonica = p.id_Igraonica INNER JOIN datum AS d ON p.id_paket = d.id_Paket INNER JOIN cenovnik AS c ON p.id_paket = c.id_Paket WHERE i.id_igraonica = $P{idIgraonica}";
-
-					JRDesignQuery up = new JRDesignQuery();
-					up.setText(sql);
-
-					System.out.print(up);
-					jd.setQuery(up);
-					System.out.print(jd);
-
-					JasperReport jr = JasperCompileManager.compileReport(jd);
-
-					JasperPrint js = JasperFillManager.fillReport(jr, null, con);
-					JasperViewer.viewReport(js, false);
-
-				} catch (JRException e1) {
-
-					e1.printStackTrace();
-
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnPdf.setIcon(new ImageIcon(mojaIgraonica.class.getResource("/images/pdf-icon.png")));
-		btnPdf.setBackground(Color.WHITE);
-		btnPdf.setBounds(731, 378, 52, 50);
-		contentPane.add(btnPdf);
 
 		JLabel lblIznos = new JLabel("Iznos Paketa :");
 		lblIznos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -861,6 +762,7 @@ public class mojaIgraonica extends JFrame {
 			tfPrikazOpisa.setText(k.getOpisIgraonice());
 			tfIdIgraonice.setText(k.getIdIgraonica());
 			System.out.println("Id Igraonice je = " + tfIdIgraonice.getText());
+			System.out.println("NE MOGU DA POSTAVIM");
 
 		}
 	}
@@ -873,6 +775,7 @@ public class mojaIgraonica extends JFrame {
 			tfDoTrajanjePaketa.setText(k.getDatumDo());
 			tfCenaPaketa.setText(k.getCenaPaketa());
 			tfIdPaketa.setText(k.getIdPaket());
+			System.out.println(" MOGU DA POSTAVIM");
 		}
 
 	}

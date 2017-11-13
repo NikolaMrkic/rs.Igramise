@@ -215,19 +215,19 @@ public class DBKomunikacija {
 
 		return al;
 	}
-
-	public void zakaziRodjendan(int idRodjendan, String imeRodjitelja, String imeSlavljenika, int brD, int brO,
+	 /////////////////// zakazi rodjendan /////////////////////////
+	public void zakaziRodjendan( String imeRodjitelja, String imeSlavljenika, int brD, int brO,
 			int idIgraonica) {
 
-		String upit = "INSERT INTO rodjendan(id_rodjendan,ime_roditelja,ime_slavljenika,br_dece,br_odraslih,id_Igraonica) VALUES (?,?,?,?,?,?)";
+		String upit = "INSERT INTO rodjendan (ime_roditelja,ime_slavljenika,br_dece,br_odraslih,id_Igraonica) VALUES (?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(upit);
-			ps.setInt(1, idRodjendan);
-			ps.setString(2, imeRodjitelja);
-			ps.setString(3, imeSlavljenika);
-			ps.setInt(4, brD);
-			ps.setInt(5, brO);
-			ps.setInt(6, idIgraonica);
+	
+			ps.setString(1, imeRodjitelja);
+			ps.setString(2, imeSlavljenika);
+			ps.setInt(3, brD);
+			ps.setInt(4, brO);
+			ps.setInt(5, idIgraonica);
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -290,28 +290,28 @@ public class DBKomunikacija {
 	}
 
 	///////////////// ZAKAZI DATUM RODJENDANA //////////////
-	public void zakaziDatumRodjendana(int idDatumRodjendana,String danOd ,int idRodjendan) {
-		String upit = "INSERT INTO datum_rodjendana (id_datum_rodjendana ,datum,id_Rodjendan) VALUES (?,?,?)";
+	public void zakaziDatumRodjendana(String datumOd ,int idRodjendan) {
+		String upit = "INSERT INTO datum_rodjendana (datum,id_Rodjendan) VALUES (?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(upit);
-			ps.setInt(1, idDatumRodjendana);
-			ps.setString(2,  danOd);
-			ps.setInt(3, idRodjendan);
+		
+			ps.setString(1,  datumOd);
+			ps.setInt(2, idRodjendan);
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 		/////////// ZAKAZI VREME RODJENDANA //////////////////////
-public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String vremeDo, int idRodjendan) {
+public void zakaziVremeRodjendana( String vrameOd, String vremeDo, int idRodjendan) {
 	System.out.println("Treba da ispisem vreme");
-		String sql = "INSERT INTO vreme_rodjendana (id_vreme_rodjendana, vreme_od, vreme_do, id_Rodjendan VALUES (?+'"+vrameOd+"'+'"+vremeDo+"'+?)";
+		String sql = "INSERT INTO vreme_rodjendana ( vreme_od, vreme_do, id_Rodjendan) VALUES (?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, idVremeRodjendana);
-			ps.setString(2, vrameOd);
-			ps.setString(3, vremeDo);
-			ps.setInt(4, idRodjendan);
+		
+			ps.setString(1, vrameOd);
+			ps.setString(2, vremeDo);
+			ps.setInt(3, idRodjendan);
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -425,7 +425,7 @@ public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String 
 				r.setBrDece(rs.getInt("ime_slavljenika"));
 				r.setImeSlavljenika(rs.getString("br_dece"));
 				r.setBrojOdraslih(rs.getInt("br_odraslih"));
-				r.setIdIgraonica(rs.getString("id_Igraonica"));
+				r.setIdIgraonica(rs.getInt("id_Igraonica"));
 
 				al.add(r);
 			}
@@ -440,7 +440,17 @@ public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String 
 	public ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> upisiPodatkeIgraonicuAdresuOpis(String korisnickoIme,
 			String lozinka) {
 		ArrayList<KlasaZaINNERIgraonicaAdresaOpisKorisnik> al = new ArrayList<>();
-		String upit = " SELECT i.id_Igraonica,naziv,kontakt_Osoba,email,opstina,grad,telefon,web,adresa,opis_igraonice FROM igraonica AS i INNER JOIN opis AS o ON i.id_igraonica = o.id_Opis INNER JOIN adresa AS a ON i.id_igraonica = a.id_Igraonica INNER JOIN korisnik k ON i.id_igraonica = k.id_Igraonica WHERE korisnicko_ime =? AND lozinka =?";
+		String upit = " SELECT i.id_Igraonica,naziv,kontakt_Osoba,email,opstina,grad,telefon,web,adresa,opis_igraonice\r\n" + 
+				"FROM igraonica AS i \r\n" + 
+				"INNER JOIN adresa AS a \r\n" + 
+				"ON\r\n" + 
+				"i.id_igraonica = a.id_Igraonica\r\n" + 
+				"INNER JOIN opis AS o \r\n" + 
+				"ON\r\n" + 
+				"i.id_igraonica = o.id_Igraonica\r\n" + 
+				"INNER JOIN korisnik AS k \r\n" + 
+				"ON\r\n" + 
+				"i.id_igraonica = k.id_Igraonica WHERE korisnicko_ime =? AND lozinka =?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(upit);
@@ -803,7 +813,7 @@ public void zakaziVremeRodjendana(int idVremeRodjendana, String vrameOd, String 
 				r.setBrDece(rs.getInt("br_dece"));
 				r.setImeSlavljenika(rs.getString("ime_slavljenika"));
 				r.setBrojOdraslih(rs.getInt("br_odraslih"));
-				r.setIdIgraonica(rs.getString("id_Igraonica"));
+				r.setIdIgraonica(rs.getInt("id_Igraonica"));
 
 				al.add(r);
 			}

@@ -85,7 +85,7 @@ public class paketForma extends JFrame {
 
 				for (Igraonica i : Kontroler.getInstance().vratiIgraonicu()) {
 					if (i.getNaziv().equalsIgnoreCase(a))
-						;
+						
 					idIgraonica = i.getIdIgraonica();
 				}
 			}

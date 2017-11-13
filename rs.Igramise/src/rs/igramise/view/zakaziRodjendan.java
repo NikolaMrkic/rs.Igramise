@@ -34,15 +34,16 @@ public class zakaziRodjendan extends JFrame {
 	private JTextField tfBrOdraslih;
 	private JTextField tfDatum;
 	private JTextField tfVremeDo;
-	private JComboBox cbSatDo,cbSatOd,cbMinutiOd,cbSecOd, cbMinutDo, cbGodinaOd, cbMesecOd, cbDanOd;
-	private String satOd, minutOD, godinaOd, MesecOd, danOd, secOd, datumOd,satDo,minutiDo,satiDo,secDo,vrameOd,vremeDo;
+	private JComboBox cbSatDo, cbSatOd, cbMinutiOd, cbSecOd, cbMinutDo, cbGodinaOd, cbMesecOd, cbDanOd;
+	private String satOd, minutOD, godinaOd, MesecOd, danOd, secOd, datumOd, satDo, minutiDo, satiDo, secDo, vrameOd,
+			vremeDo;
 	private JComboBox cbSecDo;
-	private int idRodjendan, idDatumRodjendana,idVremeRodjendana;
-	JComboBox cbIdRodjendan;
+	private int idRodjendan, idDatumRodjendana, idVremeRodjendana;
+	private JComboBox cbIdRodjendan;
 	private JTextField tfIdIgraonica;
 	private int idIgraonica;
 	private JTextField tfVremeOd;
-	
+	private int glbId;
 
 	// private JLabel lblIdIgraonica;
 	/**
@@ -179,9 +180,9 @@ public class zakaziRodjendan extends JFrame {
 		cbMinutDo = new JComboBox();
 		cbMinutDo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-					minutiDo = cbMinutDo.getSelectedItem().toString();
-					tfVremeDo.setText(satDo + ":" + minutiDo);
+
+				minutiDo = cbMinutDo.getSelectedItem().toString();
+				tfVremeDo.setText(satDo + ":" + minutiDo);
 			}
 		});
 		cbMinutDo.setBounds(411, 156, 66, 20);
@@ -190,9 +191,9 @@ public class zakaziRodjendan extends JFrame {
 		cbSatDo = new JComboBox();
 		cbSatDo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+
 				satDo = cbSatDo.getSelectedItem().toString();
-				tfVremeDo.setText(satDo );
+				tfVremeDo.setText(satDo);
 			}
 		});
 		cbSatDo.setBounds(360, 156, 46, 20);
@@ -206,47 +207,47 @@ public class zakaziRodjendan extends JFrame {
 		cbSecDo = new JComboBox();
 		cbSecDo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+
 				secDo = cbSecDo.getSelectedItem().toString();
 				tfVremeDo.setText(satDo + ":" + minutiDo + ":" + secDo);
 			}
 		});
 		cbSecDo.setBounds(480, 156, 46, 20);
 		panel.add(cbSecDo);
-		
-		 cbMinutiOd = new JComboBox();
-		 cbMinutiOd.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 	
-		 		minutOD = cbMinutiOd.getSelectedItem().toString();
-		 		tfVremeOd.setText(satOd + ":" + minutOD );
-		 	}
-		 });
+
+		cbMinutiOd = new JComboBox();
+		cbMinutiOd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				minutOD = cbMinutiOd.getSelectedItem().toString();
+				tfVremeOd.setText(satOd + ":" + minutOD);
+			}
+		});
 		cbMinutiOd.setBounds(191, 158, 66, 20);
 		panel.add(cbMinutiOd);
-		
-		 cbSatOd = new JComboBox();
-		 cbSatOd.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 	
-		 		satOd = cbSatOd.getSelectedItem().toString();
-		 		tfVremeOd.setText(satOd );
-		 	}
-		 });
+
+		cbSatOd = new JComboBox();
+		cbSatOd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				satOd = cbSatOd.getSelectedItem().toString();
+				tfVremeOd.setText(satOd);
+			}
+		});
 		cbSatOd.setBounds(140, 158, 46, 20);
 		panel.add(cbSatOd);
-		
-		 cbSecOd = new JComboBox();
-		 cbSecOd.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 		
-		 		secOd = cbSecOd.getSelectedItem().toString();
-		 		tfVremeOd.setText(satOd + ":" + minutOD + ":" + secOd);
-		 	}
-		 });
+
+		cbSecOd = new JComboBox();
+		cbSecOd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				secOd = cbSecOd.getSelectedItem().toString();
+				tfVremeOd.setText(satOd + ":" + minutOD + ":" + secOd);
+			}
+		});
 		cbSecOd.setBounds(260, 158, 46, 20);
 		panel.add(cbSecOd);
-		
+
 		tfVremeOd = new JTextField();
 		tfVremeOd.setColumns(10);
 		tfVremeOd.setBounds(536, 156, 74, 20);
@@ -254,40 +255,36 @@ public class zakaziRodjendan extends JFrame {
 
 		JButton btnZakazi = new JButton("ZAKAZI");
 		btnZakazi.addActionListener(new ActionListener() {
-			
-
 
 			public void actionPerformed(ActionEvent e) {
-				datumOd = godinaOd + "/" + MesecOd + "/" + danOd;
 				
-				vrameOd=satOd + ":" + minutOD + ":" + secOd;
-				vremeDo=satDo + ":" + minutiDo + ":" + secDo;
-				
+				//godOd + "/" + mesecOd + "/" + danOd;
+				datumOd = godinaOd + "-" + MesecOd  +"-" +  danOd;
+
+				vrameOd = satOd + "/" + minutOD + "/" + secOd;
+				vremeDo = satDo + "/" + minutiDo + "/" + secDo;
+
 				String imeRodjitelja = tfImeRoditelja.getText().toString();
 				String imeSlavljenika = tfImeSlavljenika.getText().toString();
 				String brDece = tfBrDece.getText().toString();
 				int brD = Integer.valueOf(brDece);
 				String brODraslih = tfBrOdraslih.getText().toString();
 				int brO = Integer.valueOf(brODraslih);
-				///
-				//String datum = tfDatum.getText().toString();
-				//String vreme = tfVreme.getText().toString();
+				
 
-				 Kontroler.getInstance().zakaziRodjendan(idRodjendan,imeRodjitelja,imeSlavljenika,brD,brO,idIgraonica);
-				 Kontroler.getInstance().zakaziDatumRodjendana(idDatumRodjendana,datumOd ,idRodjendan);
-				 System.out.println("id datuma "+idDatumRodjendana+"id rodjen"+idRodjendan);
-				 Kontroler.getInstance().zakaziVremeRodjendana(idVremeRodjendana,vrameOd,vremeDo,idRodjendan);
+				Kontroler.getInstance().zakaziRodjendan( imeRodjitelja, imeSlavljenika, brD, brO,
+						idIgraonica);
+				Kontroler.getInstance().zakaziDatumRodjendana( datumOd, glbId);
+				 //Kontroler.getInstance().zakaziVremeRodjendana(idVremeRodjendana,vrameOd,vremeDo,idRodjendan);
 				srediFormu();
-				JOptionPane.showMessageDialog(null, "Uspesno ste zakazali rodjendan za " );
 			}
 
-			
-				private void srediFormu() {
-					tfImeRoditelja.setText("");
-					tfImeSlavljenika.setText("");
-					tfBrDece.setText("");
-					tfBrOdraslih.setText("");
-							
+			private void srediFormu() {
+				tfImeRoditelja.setText("");
+				tfImeSlavljenika.setText("");
+				tfBrDece.setText("");
+				tfBrOdraslih.setText("");
+
 			}
 
 		});
@@ -302,8 +299,8 @@ public class zakaziRodjendan extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				formaZaIgraonice z = new formaZaIgraonice();
-				z.setVisible(true);
+				sveIgraoniceForma s = new sveIgraoniceForma();
+				s.setVisible(true);
 				dispose();
 			}
 		});
@@ -318,27 +315,14 @@ public class zakaziRodjendan extends JFrame {
 		tfIdIgraonica.setBounds(61, 334, 54, 10);
 		contentPane.add(tfIdIgraonica);
 		tfIdIgraonica.setColumns(10);
-		
-		 cbIdRodjendan = new JComboBox();
-		 cbIdRodjendan.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent arg0) {
-		 	
-		 		String a = (String) cbIdRodjendan.getSelectedItem();
-		 		for(Rodjendan r : Kontroler.getInstance().vratRodjendan()) {
-		 			if (r.getImeRoditelja().equalsIgnoreCase(a))
 
-						idRodjendan = r.getIdRodjendan();
-				}
-			}
-		});
-		cbIdRodjendan.setBounds(87, 254, 28, 20);
-		contentPane.add(cbIdRodjendan);
 		
-				JLabel lblNewLabel_2 = new JLabel("New label");
-				lblNewLabel_2.setBounds(0, 0, 726, 397);
-				contentPane.add(lblNewLabel_2);
-				lblNewLabel_2.setIcon(
-						new ImageIcon(zakaziRodjendan.class.getResource("/images/Screen Shot 2015-10-27 at 02.44.34.png")));
+
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(0, 0, 726, 397);
+		contentPane.add(lblNewLabel_2);
+		lblNewLabel_2.setIcon(
+				new ImageIcon(zakaziRodjendan.class.getResource("/images/Screen Shot 2015-10-27 at 02.44.34.png")));
 		popuniDatum();
 		popuniSat();
 
@@ -457,9 +441,9 @@ public class zakaziRodjendan extends JFrame {
 		cbMinutDo = new JComboBox();
 		cbMinutDo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-					minutiDo = cbMinutDo.getSelectedItem().toString();
-					tfVremeDo.setText(satDo + ":" + minutiDo);
+
+				minutiDo = cbMinutDo.getSelectedItem().toString();
+				tfVremeDo.setText(satDo + ":" + minutiDo);
 			}
 		});
 		cbMinutDo.setBounds(411, 156, 66, 20);
@@ -468,9 +452,9 @@ public class zakaziRodjendan extends JFrame {
 		cbSatDo = new JComboBox();
 		cbSatDo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+
 				satDo = cbSatDo.getSelectedItem().toString();
-				tfVremeDo.setText(satDo );
+				tfVremeDo.setText(satDo);
 			}
 		});
 		cbSatDo.setBounds(360, 156, 46, 20);
@@ -484,47 +468,47 @@ public class zakaziRodjendan extends JFrame {
 		cbSecDo = new JComboBox();
 		cbSecDo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+
 				secDo = cbSecDo.getSelectedItem().toString();
 				tfVremeDo.setText(satDo + ":" + minutiDo + ":" + secDo);
 			}
 		});
 		cbSecDo.setBounds(480, 156, 46, 20);
 		panel.add(cbSecDo);
-		
-		 cbMinutiOd = new JComboBox();
-		 cbMinutiOd.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 	
-		 		minutOD = cbMinutiOd.getSelectedItem().toString();
-		 		tfVremeOd.setText(satOd + ":" + minutOD );
-		 	}
-		 });
+
+		cbMinutiOd = new JComboBox();
+		cbMinutiOd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				minutOD = cbMinutiOd.getSelectedItem().toString();
+				tfVremeOd.setText(satOd + ":" + minutOD);
+			}
+		});
 		cbMinutiOd.setBounds(191, 158, 66, 20);
 		panel.add(cbMinutiOd);
-		
-		 cbSatOd = new JComboBox();
-		 cbSatOd.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 	
-		 		satOd = cbSatOd.getSelectedItem().toString();
-		 		tfVremeOd.setText(satOd );
-		 	}
-		 });
+
+		cbSatOd = new JComboBox();
+		cbSatOd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				satOd = cbSatOd.getSelectedItem().toString();
+				tfVremeOd.setText(satOd);
+			}
+		});
 		cbSatOd.setBounds(140, 158, 46, 20);
 		panel.add(cbSatOd);
-		
-		 cbSecOd = new JComboBox();
-		 cbSecOd.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 		
-		 		secOd = cbSecOd.getSelectedItem().toString();
-		 		tfVremeOd.setText(satOd + ":" + minutOD + ":" + secOd);
-		 	}
-		 });
+
+		cbSecOd = new JComboBox();
+		cbSecOd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				secOd = cbSecOd.getSelectedItem().toString();
+				tfVremeOd.setText(satOd + ":" + minutOD + ":" + secOd);
+			}
+		});
 		cbSecOd.setBounds(260, 158, 46, 20);
 		panel.add(cbSecOd);
-		
+
 		tfVremeOd = new JTextField();
 		tfVremeOd.setColumns(10);
 		tfVremeOd.setBounds(536, 156, 74, 20);
@@ -532,24 +516,30 @@ public class zakaziRodjendan extends JFrame {
 		JButton btnZakazi = new JButton("ZAKAZI");
 		btnZakazi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-               datumOd = godinaOd + "/" + MesecOd + "/" + danOd;
 				
-				vrameOd=satOd + "/" + minutOD + "/" + secOd;
-				vremeDo=satDo + "/" + minutiDo + "/" + secDo;
-				
+				//godOd + "/" + mesecOd + "/" + danOd;
+				datumOd = godinaOd + "-" + MesecOd  +"-" +  danOd;
+
+				vrameOd = satOd + ":" + minutOD + ":" + secOd;
+				vremeDo = satDo + ":" + minutiDo + ":" + secDo;
+
 				String imeRodjitelja = tfImeRoditelja.getText().toString();
 				String imeSlavljenika = tfImeSlavljenika.getText().toString();
 				String brDece = tfBrDece.getText().toString();
 				int brD = Integer.valueOf(brDece);
 				String brODraslih = tfBrOdraslih.getText().toString();
 				int brO = Integer.valueOf(brODraslih);
-				///
-				//String datum = tfDatum.getText().toString();
-				//String vreme = tfVreme.getText().toString();
+				
 
-				 Kontroler.getInstance().zakaziRodjendan(idRodjendan,imeRodjitelja,imeSlavljenika,brD,brO,idIgraonica);
-				 Kontroler.getInstance().zakaziDatumRodjendana(idDatumRodjendana,datumOd ,idRodjendan);
-				 Kontroler.getInstance().zakaziVremeRodjendana(idVremeRodjendana,vrameOd,vremeDo,idRodjendan);
+				Kontroler.getInstance().zakaziRodjendan( imeRodjitelja, imeSlavljenika, brD, brO,
+						idIgraonica);
+				for(Rodjendan r : Kontroler.getInstance().vratRodjendan()) {
+					if(tfImeRoditelja.getText().equalsIgnoreCase(r.getImeRoditelja())) {
+						glbId = r.getIdRodjendan();
+					}
+				}
+				Kontroler.getInstance().zakaziDatumRodjendana( datumOd, glbId);
+				 Kontroler.getInstance().zakaziVremeRodjendana(vrameOd,vremeDo,glbId);
 				srediFormu();
 				JOptionPane.showMessageDialog(null, "Uspesno ste zakazali rodjendan za ");
 			}
@@ -594,46 +584,28 @@ public class zakaziRodjendan extends JFrame {
 		tfIdIgraonica.setBounds(61, 334, 54, 10);
 		contentPane.add(tfIdIgraonica);
 		tfIdIgraonica.setColumns(10);
-		cbIdRodjendan = new JComboBox();
-		 cbIdRodjendan.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent arg0) {
-		 	
-		 		String a = (String) cbIdRodjendan.getSelectedItem();
-		 		for(Rodjendan r : Kontroler.getInstance().vratRodjendan()) {
-		 			if (r.getImeRoditelja().equalsIgnoreCase(a))
 
-						idRodjendan = r.getIdRodjendan();
-				}
-			}
-		});
-		cbIdRodjendan.setBounds(87, 254, 28, 20);
-		contentPane.add(cbIdRodjendan);
+		
 		popuniDatum();
 		popuniSat();
-		vratiIdRodjendana();
-		id( id);
+		postaviIdRodjendana();
+		id(id);
 
+	}
+
+	
+
+	private void postaviIdRodjendana() {
+		for(Rodjendan r : Kontroler.getInstance().vratRodjendan()) {
+			if(tfImeRoditelja.getText().equalsIgnoreCase(r.getImeRoditelja())) {
+				glbId = r.getIdRodjendan();
+			}
+		}
+		
 	}
 
 	private void id(String id) {
-		idIgraonica=Integer.parseInt(id);
-	}
-
-	private void vratiIdRodjendana() {
-		for (Rodjendan r : Kontroler.getInstance().vratRodjendan()) {
-			cbIdRodjendan.addItem(r.getIdIgraonica());
-			//cbIdRodjendan.setSelectedIndex(cbIdRodjendan.getItemCount() - 1);
-			;
-		}
-	}
-
-	private void postaviIdIgraonice(String idIgraonica) {
-		for (Rodjendan r : Kontroler.getInstance().vratRodjendan(idIgraonica)) {
-			tfIdIgraonica.setText(r.getIdIgraonica());
-			System.out.println("IIIIID JE " + r.getIdIgraonica());
-			System.out.println("");
-		}
-
+		idIgraonica = Integer.parseInt(id);
 	}
 
 	private void popuniSat() {
@@ -659,7 +631,7 @@ public class zakaziRodjendan extends JFrame {
 
 		for (int i = 1; i < 32; i++) {
 			cbDanOd.addItem(i);
-			
+
 		}
 		for (int i = 1; i < 13; i++) {
 			cbMesecOd.addItem(i);

@@ -75,7 +75,7 @@ public class datumCenaForma extends JFrame {
         contentPane.setLayout(null);
 
         cbIdPaketa = new JComboBox();
-       // cbIdPaketa.setVisible(false);
+       cbIdPaketa.setVisible(false);
         cbIdPaketa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -313,7 +313,7 @@ public class datumCenaForma extends JFrame {
             cbMesecOd.addItem(i);
             cbMesecDo.addItem(i);
         }
-        for (int i = 2016; i < 2100; i++) {
+        for (int i = 2017; i < 2100; i++) {
             cbGodOd.addItem(i);
             cbGodDo.addItem(i);
         }
@@ -326,6 +326,7 @@ public class datumCenaForma extends JFrame {
         for (Paket p : Kontroler.getInstance().vratiPaket()) {
             if (!predhodniPaket.equals(p.getNazivPaketa())) {
                 cbIdPaketa.addItem(p.getNazivPaketa());
+                cbIdPaketa.setSelectedIndex(cbIdPaketa.getItemCount() - 1);
             }
             predhodniPaket = p.getNazivPaketa();
         }

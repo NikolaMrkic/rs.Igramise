@@ -125,7 +125,14 @@ public class sveIgraoniceForma extends JFrame {
 		lblNewLabel_4.setBounds(319, 264, 231, 14);
 		getContentPane().add(lblNewLabel_4);
 
-		JButton btnIgraonica3 = new JButton("New button");
+		JButton btnIgraonica3 = new JButton("Lion King");
+		btnIgraonica3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				nazivIgraonice = btnIgraonica3.getText().toString();
+				postavi();
+			}
+		});
 		btnIgraonica3.setBounds(166, 289, 212, 43);
 		getContentPane().add(btnIgraonica3);
 
