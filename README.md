@@ -5,7 +5,7 @@
 ![mojaigraonica](https://user-images.githubusercontent.com/28143840/34130838-9c1c37c6-e449-11e7-95d7-fd71622b9234.png)
 ![unosigraonice](https://user-images.githubusercontent.com/28143840/34944679-d2ac4728-fa00-11e7-94df-86beab7c273b.png)
 ![zakazirodjendan](https://user-images.githubusercontent.com/28143840/34944732-fc76b35e-fa00-11e7-8808-a6a94249c56c.png)
-
 ![datumcena](https://user-images.githubusercontent.com/28143840/34944763-1ce862c2-fa01-11e7-8473-5b4ffcd4da79.png)
-
+![sveigraonice](https://user-images.githubusercontent.com/28143840/34944798-4e85e278-fa01-11e7-810a-2f5d859f639c.png)
+![odredjenaigraonica](https://user-images.githubusercontent.com/28143840/34944818-5e0cea16-fa01-11e7-99e5-d4558a97d056.png)
 ![trenutno_stanje_igraonica_jasper](https://user-images.githubusercontent.com/28143840/34130989-32597280-e44a-11e7-8f86-0ee759fc5fa7.png)
