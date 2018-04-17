@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import rs.igramise.domen.Korisnik;
-import rs.igramise.domen.KorisnikAplikacije;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Korisnik;
+import rs.igramise.model.KorisnikAplikacije;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

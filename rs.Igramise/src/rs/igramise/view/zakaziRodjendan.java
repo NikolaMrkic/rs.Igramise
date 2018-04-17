@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import rs.igramise.domen.Rodjendan;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Rodjendan;
 
 import java.awt.Color;
 import java.awt.Component;

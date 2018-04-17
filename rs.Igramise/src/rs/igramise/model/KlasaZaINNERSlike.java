@@ -1,4 +1,4 @@
-package rs.igramise.domen;
+package rs.igramise.model;
 
 import javax.swing.Icon;
 

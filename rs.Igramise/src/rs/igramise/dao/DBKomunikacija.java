@@ -1,4 +1,4 @@
-package rs.igramise.baza;
+package rs.igramise.dao;
 
 import java.awt.font.ImageGraphicAttribute;
 import java.sql.Connection;
@@ -10,17 +10,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import rs.igramise.domen.Igraonica;
-import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
-import rs.igramise.domen.KlasaZaINNERSlike;
-import rs.igramise.domen.KlasaZaSveIgraonice;
-import rs.igramise.domen.Korisnik;
-import rs.igramise.domen.KorisnikAplikacije;
-import rs.igramise.domen.Paket;
-import rs.igramise.domen.PonudaPaketaTabela;
-import rs.igramise.domen.Rodjendan;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Igraonica;
+import rs.igramise.model.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
+import rs.igramise.model.KlasaZaINNERIgraonicaPaketDatumCena;
+import rs.igramise.model.KlasaZaINNERSlike;
+import rs.igramise.model.KlasaZaSveIgraonice;
+import rs.igramise.model.Korisnik;
+import rs.igramise.model.KorisnikAplikacije;
+import rs.igramise.model.Paket;
+import rs.igramise.model.PonudaPaketaTabela;
+import rs.igramise.model.Rodjendan;
 import rs.igramise.view.mojaIgraonica;
 import rs.igramise.view.unosIgraonice;
 

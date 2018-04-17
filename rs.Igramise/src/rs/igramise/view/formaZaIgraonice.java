@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import rs.igramise.domen.Igraonica;
-import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Igraonica;
+import rs.igramise.model.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;

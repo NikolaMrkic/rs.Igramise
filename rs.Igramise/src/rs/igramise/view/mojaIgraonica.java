@@ -31,12 +31,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.olap.xmla.JRXmlaHierarchyLevel;
 import net.sf.jasperreports.view.JasperViewer;
-import rs.igramise.baza.DBKomunikacija;
-import rs.igramise.domen.Igraonica;
-import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import rs.igramise.domen.KlasaZaINNERIgraonicaPaketDatumCena;
-import rs.igramise.domen.KlasaZaINNERSlike;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.dao.DBKomunikacija;
+import rs.igramise.model.Igraonica;
+import rs.igramise.model.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
+import rs.igramise.model.KlasaZaINNERIgraonicaPaketDatumCena;
+import rs.igramise.model.KlasaZaINNERSlike;
 
 import javax.swing.UIManager;
 import javax.swing.JTextField;

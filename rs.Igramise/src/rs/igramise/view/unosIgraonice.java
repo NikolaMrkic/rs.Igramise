@@ -38,9 +38,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import rs.igramise.baza.DBKomunikacija;
-import rs.igramise.domen.Igraonica;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.dao.DBKomunikacija;
+import rs.igramise.model.Igraonica;
 import rs.igramise.view.DodajSliku;
 
 import javax.swing.UIManager;

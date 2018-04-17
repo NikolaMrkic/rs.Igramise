@@ -25,9 +25,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import rs.igramise.baza.DBKomunikacija;
-import rs.igramise.domen.Igraonica;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.dao.DBKomunikacija;
+import rs.igramise.model.Igraonica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

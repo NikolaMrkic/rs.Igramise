@@ -4,10 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.table.DefaultTableModel;
 
-import rs.igramise.domen.Igraonica;
-import rs.igramise.domen.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
-import rs.igramise.domen.KlasaZaSveIgraonice;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Igraonica;
+import rs.igramise.model.KlasaZaINNERIgraonicaAdresaOpisKorisnik;
+import rs.igramise.model.KlasaZaSveIgraonice;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

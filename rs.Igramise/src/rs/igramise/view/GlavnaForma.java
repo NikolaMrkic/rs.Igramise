@@ -11,9 +11,9 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import rs.igramise.baza.DBKomunikacija;
-import rs.igramise.domen.Igraonica;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.dao.DBKomunikacija;
+import rs.igramise.model.Igraonica;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

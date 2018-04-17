@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import rs.igramise.domen.Paket;
-import rs.igramise.domen.PonudaPaketaTabela;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Paket;
+import rs.igramise.model.PonudaPaketaTabela;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -80,7 +80,7 @@ public class datumCenaForma extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 String Paket = (String) cbIdPaketa.getSelectedItem();
-                for (rs.igramise.domen.Paket p : Kontroler.getInstance().vratiPaket()) {
+                for (rs.igramise.model.Paket p : Kontroler.getInstance().vratiPaket()) {
                     if (p.getNazivPaketa().equalsIgnoreCase(Paket)) {
                         idPaket = p.getIdPaketa();
                     }

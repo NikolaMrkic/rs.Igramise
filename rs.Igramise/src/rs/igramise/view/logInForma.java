@@ -2,9 +2,9 @@ package rs.igramise.view;
 
 import java.awt.BorderLayout;
 
-import rs.igramise.domen.Igraonica;
-import rs.igramise.domen.Korisnik;
-import rs.igramise.kontroler.Kontroler;
+import rs.igramise.controller.Kontroler;
+import rs.igramise.model.Igraonica;
+import rs.igramise.model.Korisnik;
 import rs.igramise.view.mojaIgraonica;
 
 import java.awt.EventQueue;
